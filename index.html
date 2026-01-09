@@ -7,59 +7,47 @@
 <title>Incoming</title>
 
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 <style>
 html, body {
   margin: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(#6b5638, #5a472d);
+  background: #000;
   font-family: system-ui, -apple-system, sans-serif;
-  color: #fff;
+  color: #f0f0f0;
   overflow: hidden;
-}
-
-/* ===== 上部（抽象ステータス） ===== */
-.top {
-  position: absolute;
-  top: 14px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  font-size: 14px;
-  opacity: 0.85;
-  letter-spacing: 1px;
 }
 
 /* ===== 中央情報 ===== */
 .center {
   position: absolute;
-  top: 28%;
+  top: 32%;
   width: 100%;
   text-align: center;
 }
 
 .region {
-  font-size: 16px;
-  opacity: 0.75;
+  font-size: 15px;
+  opacity: 0.6;
   margin-bottom: 6px;
 }
 
 .number {
-  font-size: 38px;
+  font-size: 36px;
   letter-spacing: 2px;
   font-weight: 500;
 }
 
-/* ===== 下部UI ===== */
+/* ===== 下部小ボタン ===== */
 .bottom {
   position: absolute;
   bottom: 120px;
   width: 100%;
   display: flex;
   justify-content: space-around;
-  font-size: 13px;
+  font-size: 12px;
   opacity: 0.9;
 }
 
@@ -67,15 +55,61 @@ html, body {
   text-align: center;
 }
 
-.small-circle {
-  width: 44px;
-  height: 44px;
+/* オリジナル簡易アイコン */
+.icon {
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.15);
   margin: 0 auto 6px;
+  position: relative;
 }
 
-/* ===== 応答スライダー ===== */
+/* メッセージ風 */
+.icon.message::before {
+  content: "";
+  position: absolute;
+  inset: 12px 10px 16px 10px;
+  border: 2px solid rgba(255,255,255,0.9);
+  border-radius: 4px;
+}
+
+.icon.message::after {
+  content: "";
+  position: absolute;
+  bottom: 10px;
+  left: 16px;
+  width: 10px;
+  height: 10px;
+  background: rgba(255,255,255,0.9);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+/* 留守番風 */
+.icon.voice::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 50%;
+}
+
+.icon.voice::after {
+  content: "";
+  position: absolute;
+  top: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 2px;
+  background: rgba(255,255,255,0.9);
+}
+
+/* ===== スライダー ===== */
 .slider-wrap {
   position: absolute;
   bottom: 34px;
@@ -88,26 +122,24 @@ html, body {
   width: 82%;
   max-width: 360px;
   height: 60px;
-  background: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.15);
   border-radius: 30px;
   padding: 6px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  backdrop-filter: blur(10px);
 }
 
 .knob {
   width: 48px;
   height: 48px;
-  background: #fff;
+  background: #f5f5f5;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #3aa655;
+  color: #1a8f5a;
   font-size: 22px;
-  cursor: pointer;
   touch-action: none;
 }
 
@@ -115,7 +147,7 @@ html, body {
   flex: 1;
   text-align: center;
   font-size: 15px;
-  color: #f0f0f0;
+  color: #dcdcdc;
   letter-spacing: 0.5px;
 }
 
@@ -139,20 +171,18 @@ html, body {
 
 <body>
 
-<div class="top">着信</div>
-
 <div class="center">
   <div class="region">日本</div>
-  <div class="number">080 2555 098</div>
+  <div class="number">03-831-0093</div>
 </div>
 
 <div class="bottom">
   <div class="small-btn">
-    <div class="small-circle"></div>
+    <div class="icon message"></div>
     メッセージ
   </div>
   <div class="small-btn">
-    <div class="small-circle"></div>
+    <div class="icon voice"></div>
     留守番
   </div>
 </div>
